@@ -7,7 +7,7 @@ commands:
     usage:  /pvptoggle
     permission: togglepvp.player
     
-  #This will likely disappear in the next version of this plugin#
+  #This will likely disappear in the next version of this plugin
   pvpadmin:
     description: Admin command to enable/disable pvp
     usage: /pvpadmin <player>
