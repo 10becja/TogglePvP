@@ -1,0 +1,19 @@
+name: TogglePvP
+version: 1.0
+main: me.becja10.TogglePvP.Main
+commands:
+  pvptoggle:
+    description: Toggle pvp enabled/disabled
+    usage:  /pvptoggle
+    permission: togglepvp.player
+    
+  #This will likely disappear in the next version of this plugin#
+  pvpadmin:
+    description: Admin command to enable/disable pvp
+    usage: /pvpadmin <player>
+    permission: togglepvp.admin
+    
+  pvpreset:
+    description: Admin tool to reset a player's cooldown timer
+    usage: /pvpreset <player>
+    permission: togglepvp.admin
