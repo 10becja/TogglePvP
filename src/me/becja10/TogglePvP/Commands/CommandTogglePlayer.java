@@ -12,7 +12,7 @@ public class CommandTogglePlayer extends CommandModel
 {
 	public CommandTogglePlayer()
 	{
-		super("togglepvp.player", "/pvptoggle");
+		super("togglepvp.player", "/togglepvp");
 	}
 	
 	/*
@@ -28,7 +28,7 @@ public class CommandTogglePlayer extends CommandModel
 		}
 		
 		Player p = (Player)sender;
-		if (cml.equalsIgnoreCase("pvptoggle")) {
+		if (cml.equalsIgnoreCase("togglepvp")) {
 			
 			//make sure they don't type anything behind the command
 			if (args.length == 0) {

@@ -12,12 +12,12 @@ public class CommandResetTimer extends CommandModel
 {
 	public CommandResetTimer() 
 	{
-		super("togglepvp.admin", "/pvpreset <player>");
+		super("togglepvp.admin", "/togglepvpreset <player>");
 	}
 	
 	public boolean onCmd(CommandSender sender, Command cmd, String cml, String[] args)
 	{
-		if (cml.equalsIgnoreCase("pvpreset")) 
+		if (cml.equalsIgnoreCase("togglepvpreset")) 
 		{
 			//make sure they only type one name
 			if (args.length == 1) 

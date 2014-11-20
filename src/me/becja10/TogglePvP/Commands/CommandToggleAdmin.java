@@ -13,12 +13,12 @@ public class CommandToggleAdmin extends CommandModel
 {
 	public CommandToggleAdmin()
 	{
-		super("togglepvp.admin", "/pvpadmin <player>");
+		super("togglepvp.admin", "/togglepvpadmin <player>");
 	}
 
 	public boolean onCmd(CommandSender sender, Command cmd, String cml, String[] args)
 	{
-		if (cml.equalsIgnoreCase("pvpadmin")) 
+		if (cml.equalsIgnoreCase("togglepvpadmin")) 
 		{
 			//make sure they only type one name
 			if (args.length == 1) 

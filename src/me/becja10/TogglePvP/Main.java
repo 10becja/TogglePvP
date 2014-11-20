@@ -36,9 +36,9 @@ public class Main extends JavaPlugin
     getServer().getPluginManager().registerEvents(new SplashPotion(), this);    
 
     //set command executors
-    getCommand("pvptoggle").setExecutor(new CommandTogglePlayer());
-    getCommand("pvpadmin").setExecutor(new CommandToggleAdmin());
-    getCommand("pvpreset").setExecutor(new CommandResetTimer());
+    getCommand("togglepvp").setExecutor(new CommandTogglePlayer());
+    getCommand("togglepvpadmin").setExecutor(new CommandToggleAdmin());
+    getCommand("togglepvpreset").setExecutor(new CommandResetTimer());
 
     //yeah...
     saveDefaultConfig();
