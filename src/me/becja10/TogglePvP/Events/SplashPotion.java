@@ -28,17 +28,19 @@ public class SplashPotion implements Listener
 			for(LivingEntity thing : e.getAffectedEntities())
 			{	
 				//only care if entity is Player, and one of the players has PVE
-				if((thing instanceof Player) & ((!Toggle.isPvPEnabled((Player) thing)) || (!Toggle.isPvPEnabled(thrower))))
+				if(thing instanceof Player)
 				{
 					Player hit = (Player) thing;
-											
-					//loop through all effects and see if Poison is one of them
-					for(PotionEffect effect : e.getPotion().getEffects())
-					{
-						if(effect.getType().equals(PotionEffectType.POISON))
-						{							
-							//now set the intensity for the hit player to be negative
-							e.setIntensity(hit, -1);									
+					if((!Toggle.isPvPEnabled(hit)) || (!Toggle.isPvPEnabled(thrower)))
+					{						
+						//loop through all effects and see if Poison is one of them
+						for(PotionEffect effect : e.getPotion().getEffects())
+						{
+							if(effect.getType().equals(PotionEffectType.POISON))
+							{							
+								//now set the intensity for the hit player to be negative
+								e.setIntensity(hit, -1);									
+							}
 						}
 					}
 				}

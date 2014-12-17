@@ -1,5 +1,5 @@
 name: TogglePvP
-version: 1.0
+version: 1.1
 main: me.becja10.TogglePvP.Main
 commands:
   togglepvp:
