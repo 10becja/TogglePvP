@@ -25,10 +25,14 @@ public class ColorName implements Listener
 	public void onNameTag(AsyncPlayerReceiveNameTagEvent event) 
 	{
 		Player player = event.getNamedPlayer();
+		String name = player.getName();
 		if (Toggle.isPvPEnabled(player)) //if they are pvp
-			event.setTag(pvpColor + player.getName());
+			name = pvpColor + player.getName();
 		else //they are pve
-			event.setTag(pveColor + player.getName());
+			name = pveColor + player.getName();
+		if(name.length() >= 16)
+			name = player.getName();
+		event.setTag(name);
 	}
 	
 	
@@ -40,16 +44,21 @@ public class ColorName implements Listener
 		//refresh their tag
 		TagAPI.refreshPlayer(p);
 		
+		String name = p.getName();
+		
 		//change their TAB list color
 		if (Toggle.isPvPEnabled(p)) //if they are pvp
 		{
-			p.setPlayerListName(pvpColor + p.getName());
+			name = pvpColor + p.getName();
 			p.sendMessage(MessageType.PVP_ENABLED.getMsg());
 		}
 		else //they are pve
 		{
-			p.setPlayerListName(pveColor + p.getName());
+			name = pveColor + p.getName();
 			p.sendMessage(MessageType.PVP_DISABLED.getMsg());
 		}
+		if(name.length() >= 16)
+			name = name.substring(0, 16);
+		p.setPlayerListName(name);
 	}
 }

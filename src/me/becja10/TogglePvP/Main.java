@@ -2,12 +2,12 @@ package me.becja10.TogglePvP;
 
 import java.util.logging.Logger;
 
+import me.becja10.TogglePvP.Events.ColorName;
 import me.becja10.TogglePvP.Events.EntityDamage;
 import me.becja10.TogglePvP.Events.PlayerJoin;
 import me.becja10.TogglePvP.Events.SplashPotion;
 import me.becja10.TogglePvP.Utils.FileManager;
 import me.becja10.TogglePvP.Utils.MessageType;
-import me.becja10.TogglePvP.Utils.PlayerBoard;
 import me.becja10.TogglePvP.Utils.Toggle;
 
 import org.bukkit.Bukkit;
@@ -34,11 +34,9 @@ public class Main extends JavaPlugin
 		//register listeners 
 		getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
 		getServer().getPluginManager().registerEvents(new EntityDamage(), this);
-		getServer().getPluginManager().registerEvents(new SplashPotion(), this);   
+		getServer().getPluginManager().registerEvents(new SplashPotion(), this); 
+		getServer().getPluginManager().registerEvents(new ColorName(), this);
 		
-		//set up some teams so that we can color nameplates
-	    new PlayerBoard();
-
 		//yeah...
 		saveDefaultConfig();
 		FileManager.saveDefaultPlayers();

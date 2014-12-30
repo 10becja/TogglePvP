@@ -10,15 +10,6 @@ Toggle Delay: 180
 # Control whether pvp is enabled/disabled by default when a player joins. Must be true/false
 PvP Enabled: true
 
-# Control if the name above a player's head should change color. Must be true/false
-Do Color Change: true
-
-# Color for the player's name if PVP is enabled
-Enabled Color: '&c'
-
-# Color for the player's name if PVP is disabled
-Disabled Color: '&a'
-
 # Make pvp available in nether, regardless of status
 Ignore Nether: true
 

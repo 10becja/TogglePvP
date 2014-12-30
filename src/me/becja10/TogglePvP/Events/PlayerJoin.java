@@ -2,8 +2,6 @@ package me.becja10.TogglePvP.Events;
 
 import me.becja10.TogglePvP.Main;
 import me.becja10.TogglePvP.Utils.FileManager;
-import me.becja10.TogglePvP.Utils.PlayerBoard;
-
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -35,6 +33,6 @@ public class PlayerJoin implements Listener
 		FileManager.savePlayers();
 		
 		//add them to the right team (color their name correctly
-		PlayerBoard.addPlayerToTeam(e.getPlayer());
+		ColorName.changeColor(e.getPlayer());
 	}
 }

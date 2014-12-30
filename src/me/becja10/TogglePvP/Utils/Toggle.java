@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import me.becja10.TogglePvP.Main;
+import me.becja10.TogglePvP.Events.ColorName;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -33,7 +34,7 @@ public class Toggle
 		FileManager.savePlayers();
 		
 		//add the player to the right team, this way their name changes
-		PlayerBoard.addPlayerToTeam(player);
+		ColorName.changeColor(player);
 
 		//schedule an event to remove the player from the list of players who have recently changed state
 		//this way they can change again if they want
