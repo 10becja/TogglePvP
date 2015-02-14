@@ -63,8 +63,7 @@ public class Toggle
 	/*
 	 * Get the time remaining for the player
 	 */
-	public static int getTimeRemaining(Player player) {
-		String name = player.getName();
+	public static int getTimeRemaining(String name) {
 		//compare time stored when player used command, and current time
 		long time =  System.currentTimeMillis() - toggled.get(name);
 		return Main.getInstance().getConfig().getInt("Toggle Delay") - (int)time/1000;
