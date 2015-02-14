@@ -66,8 +66,14 @@ public class EntityDamage implements Listener
 		}
 		//if we decided that the attacker is a player
 		if(attacker != null)
+		{
+			//admins can damage anyone, at any time. MUHAHAHA
+			if(attacker.hasPermission("togglepvp.admin"))
+				return;
+			
 			//make sure both attacker and attacked have pvp enabled, if not, cancel the event
 			if((!Toggle.isPvPEnabled(attacker)) || (!Toggle.isPvPEnabled(attacked)))
 				event.setCancelled(true);
+		}
 	}
 }

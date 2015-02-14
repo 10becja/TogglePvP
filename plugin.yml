@@ -1,12 +1,13 @@
 name: TogglePvP
-version: 1.6
+version: 1.7
 main: me.becja10.TogglePvP.Main
+depend: [iTag]
+description: Allows players to toggle between PvP and PvE
 commands:
   togglepvp:
     description: Toggle pvp enabled/disabled
     usage: /togglepvp <player>
-    aliases: [tpvp]
-    
+    aliases: [tpvp] 
   togglepvpreset: 
     description: Admin tool to reset a player's cooldown timer
     usage: /togglepvpreset <player>
