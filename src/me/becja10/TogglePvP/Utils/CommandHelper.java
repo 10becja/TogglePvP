@@ -43,7 +43,6 @@ public class CommandHelper {
 						break;
 						
 					default: //want to check a player
-						@SuppressWarnings("deprecation")
 						Player t = Bukkit.getPlayer(args[0]);
 						
 						//make sure there is actually a player by that name online.
@@ -92,7 +91,6 @@ public class CommandHelper {
 					sender.sendMessage(MessageType.NO_PERM.getMsg());
 				else
 				{
-					@SuppressWarnings("deprecation")
 					Player t = Bukkit.getPlayer(args[0]);
 					
 					//make sure there is actually a player by that name online.
@@ -120,7 +118,6 @@ public class CommandHelper {
 		//make sure they only type one name
 		if (args.length == 1) 
 		{
-			@SuppressWarnings("deprecation") //probably a better way to do this with UUID, but too lazy
 			Player p = Bukkit.getPlayer(args[0]);
 			
 			//make sure there is actually a player by that name online.
@@ -174,7 +171,6 @@ public class CommandHelper {
 					sender.sendMessage(MessageType.NO_PERM.getMsg());
 				else
 				{
-					@SuppressWarnings("deprecation") //probably a better way to do this with UUID, but too lazy
 					Player t = Bukkit.getPlayer(args[0]);
 					
 					//make sure there is actually a player by that name online.

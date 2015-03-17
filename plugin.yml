@@ -1,7 +1,6 @@
 name: TogglePvP
-version: 2.0
-main: me.becja10.TogglePvP.Main
-depend: [iTag]
+version: 3.0
+main: me.becja10.TogglePvP.TogglePvP
 description: Allows players to toggle between PvP and PvE
 commands:
   togglepvp:

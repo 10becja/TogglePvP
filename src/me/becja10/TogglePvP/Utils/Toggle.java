@@ -3,8 +3,7 @@ package me.becja10.TogglePvP.Utils;
 import java.util.HashMap;
 import java.util.Map;
 
-import me.becja10.TogglePvP.Main;
-import me.becja10.TogglePvP.Events.ColorName;
+import me.becja10.TogglePvP.TogglePvP;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -38,7 +37,7 @@ public class Toggle
 
 		//schedule an event to remove the player from the list of players who have recently changed state
 		//this way they can change again if they want
-		Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable()
+		Bukkit.getScheduler().scheduleSyncDelayedTask(TogglePvP.getInstance(), new Runnable()
 		{
 			public void run()
 			{
@@ -46,7 +45,7 @@ public class Toggle
 				player.sendMessage(MessageType.CAN_TOGGLE.getMsg());
 			}
 		}
-		, 20L * Main.getInstance().getConfig().getLong("Toggle Delay"));
+		, 20L * TogglePvP.getInstance().config_toggle_delay);
 	}
 	
 	/*
@@ -66,7 +65,7 @@ public class Toggle
 	public static int getTimeRemaining(String name) {
 		//compare time stored when player used command, and current time
 		long time =  System.currentTimeMillis() - toggled.get(name);
-		return Main.getInstance().getConfig().getInt("Toggle Delay") - (int)time/1000;
+		return (int)(TogglePvP.getInstance().config_toggle_delay - time/1000);
 	}
 
 	/*

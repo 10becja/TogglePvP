@@ -1,6 +1,6 @@
 package me.becja10.TogglePvP.Events;
 
-import me.becja10.TogglePvP.Main;
+import me.becja10.TogglePvP.TogglePvP;
 import me.becja10.TogglePvP.Utils.Toggle;
 
 import org.bukkit.World.Environment;
@@ -31,8 +31,8 @@ public class EntityDamage implements Listener
 		Boolean end = attacked.getWorld().getEnvironment().equals(Environment.THE_END);
 
 		//get the config options
-		Boolean ignoreNether = Main.getInstance().getConfig().getBoolean("Ignore Nether");
-		Boolean ignoreEnd = Main.getInstance().getConfig().getBoolean("Ignore End");
+		Boolean ignoreNether = TogglePvP.getInstance().config_nether;
+		Boolean ignoreEnd = TogglePvP.getInstance().config_end;
 		
 		//if player is in nether/end and we are ignoring those world types, forget about the event
 		if((nether & ignoreNether) || (end & ignoreEnd)) return;
