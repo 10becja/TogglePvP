@@ -32,7 +32,7 @@ public class PlayerMove implements Listener
 				return;
 			}
 		}
-
+		if(scoreboard.getPlayerTeam(p) == null) return;
 		if(scoreboard.getPlayerTeam(p).getName().equals(ColorName.invisible))
 		{
 			//re-add them to the correct team

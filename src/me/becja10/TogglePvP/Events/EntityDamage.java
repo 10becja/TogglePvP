@@ -9,13 +9,14 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.ThrownPotion;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 
 public class EntityDamage implements Listener
 {
-	@EventHandler
+	@EventHandler(ignoreCancelled = true, priority = EventPriority.LOWEST)
 	public void onDmg(EntityDamageEvent event)
 	{
 		//only concerned when an entity damages another entity
@@ -71,9 +72,11 @@ public class EntityDamage implements Listener
 			if(attacker.hasPermission("togglepvp.admin"))
 				return;
 			
-			//make sure both attacker and attacked have pvp enabled, if not, cancel the event
+			//if either party has PvE enabled cancel the event
 			if((!Toggle.isPvPEnabled(attacker)) || (!Toggle.isPvPEnabled(attacked)))
+			{
 				event.setCancelled(true);
+			}
 		}
 	}
 }

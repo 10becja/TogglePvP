@@ -19,3 +19,7 @@ commands:
     description: Check how much time you have before you can toggle. Also returns a list of everyone with a timer if the argument "list" is provided
     usage: /togglepvptime [player|list]
     aliases: [tpvpt, tpvptime]
+  togglepvpreload:
+    description: Reloads the player data and configs
+    usage: /togglepvpreload 
+    aliases: [tpvpreload]

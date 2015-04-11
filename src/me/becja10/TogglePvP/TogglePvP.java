@@ -119,6 +119,17 @@ public class TogglePvP extends JavaPlugin
 		String command = cmd.getName().toLowerCase();
 		switch (command)
 		{
+		case "togglepvpreload":
+			if(sender instanceof Player && !sender.hasPermission("togglepvp.admin"))
+				sender.sendMessage(MessageType.NO_PERM.getMsg());
+			else
+			{
+				FileManager.reloadPlayers();
+				loadConfig();
+				System.out.println("[TogglePvP] Reload successful.");
+			}
+			break;
+			
 		case "togglepvptime":
 			return CommandHelper.togglepvptime(sender, args);
 			
