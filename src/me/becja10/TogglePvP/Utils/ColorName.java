@@ -52,6 +52,7 @@ public class ColorName implements Listener
 	/*
 	 * Takes care of refreshing the player's name, as well as in Tablist
 	 */
+	@SuppressWarnings("deprecation")
 	public static void changeColor(Player p)
 	{
 		//refresh their tag
@@ -82,6 +83,7 @@ public class ColorName implements Listener
 	/*
 	 * Update the players name, mostly used from other classes
 	 */
+	@SuppressWarnings("deprecation")
 	public static void updateColor(Player p)
 	{
 		if (Toggle.isPvPEnabled(p)) //if they are pvp

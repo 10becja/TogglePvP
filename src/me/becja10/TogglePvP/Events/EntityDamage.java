@@ -5,8 +5,12 @@ import me.becja10.TogglePvP.Utils.Toggle;
 
 import org.bukkit.World.Environment;
 import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Egg;
+import org.bukkit.entity.EnderPearl;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.FishHook;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Snowball;
 import org.bukkit.entity.ThrownPotion;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -64,6 +68,34 @@ public class EntityDamage implements Listener
 			//and the thrower is a player
 			if(potion.getShooter() instanceof Player)
 				attacker = (Player)potion.getShooter();
+		}
+		
+		else if(damageSource instanceof Egg)
+		{
+			Egg egg = (Egg) damageSource;
+			if(egg.getShooter() instanceof Player)
+				attacker = (Player)egg.getShooter();
+		}
+		
+		else if(damageSource instanceof Snowball)
+		{
+			Snowball ball = (Snowball) damageSource;
+			if(ball.getShooter() instanceof Player)
+				attacker = (Player)ball.getShooter();
+		}
+		
+		else if(damageSource instanceof FishHook)
+		{
+			FishHook hook = (FishHook) damageSource;
+			if(hook.getShooter() instanceof Player)
+				attacker = (Player)hook.getShooter();
+		}
+		
+		else if(damageSource instanceof EnderPearl)
+		{
+			EnderPearl pearl = (EnderPearl) damageSource;
+			if(pearl.getShooter() instanceof Player)
+				attacker = (Player)pearl.getShooter();
 		}
 		//if we decided that the attacker is a player
 		if(attacker != null)

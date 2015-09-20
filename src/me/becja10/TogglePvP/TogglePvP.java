@@ -48,8 +48,9 @@ public class TogglePvP extends JavaPlugin
 		config_end = config.getBoolean("Ignore End", true);
 		config_show_TAB = config.getBoolean("Display on TAB list", true);
 		config_changeColor = config.getBoolean("Change name color", true);
-				
-		String pvpColor = ChatColor.RED.name();
+		
+		Character pvpC = ChatColor.RED.getChar();
+		String pvpColor = pvpC.toString();
 		pvpColor = config.getString("PvP Color", pvpColor);
 		config_pvpColor = ChatColor.getByChar(pvpColor);
 		if(config_pvpColor == null)
@@ -58,7 +59,8 @@ public class TogglePvP extends JavaPlugin
 			config_pvpColor = ChatColor.RED;
 		}
 
-		String pveColor = ChatColor.GREEN.name();
+		Character pveC = ChatColor.GREEN.getChar();
+		String pveColor = pveC.toString();
 		pveColor = config.getString("PvE Color", pveColor);
 		config_pveColor = ChatColor.getByChar(pveColor);
 		if(config_pveColor == null)
@@ -71,8 +73,8 @@ public class TogglePvP extends JavaPlugin
 		outConfig.set("PvP Enabled", config_default_pvp);
 		outConfig.set("Ignore Nether", config_nether);
 		outConfig.set("Ignore End", config_end);
-		outConfig.set("PvP Color", config_pvpColor.name());
-		outConfig.set("PvE Color", config_pveColor.name());
+		outConfig.set("PvP Color", config_pvpColor.getChar());
+		outConfig.set("PvE Color", config_pveColor.getChar());
 		outConfig.set("Display on TAB list", config_show_TAB);
 		outConfig.set("Change name color", config_changeColor);
 		
@@ -138,6 +140,12 @@ public class TogglePvP extends JavaPlugin
 			
 		case "togglepvp":
 			return CommandHelper.togglepvp(sender, args);
+		
+		case "lockpvp":
+			return CommandHelper.lockpvp(sender, args);
+			
+		case "unlockpvp":
+			return CommandHelper.unlockpvp(sender, args);
 		
 		case "togglepvpreset":
 			if(sender instanceof Player && !sender.hasPermission("togglepvp.admin"))

@@ -2,6 +2,7 @@ package me.becja10.TogglePvP.Events;
 
 import me.becja10.TogglePvP.TogglePvP;
 import me.becja10.TogglePvP.Utils.ColorName;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,6 +20,7 @@ public class PlayerMove implements Listener
 		scoreboard = TogglePvP.getInstance().getServer().getScoreboardManager().getMainScoreboard();
 	}
 
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onMove(PlayerMoveEvent event)
 	{

@@ -1,5 +1,6 @@
 package me.becja10.TogglePvP.Events;
 
+import java.util.Arrays;
 import me.becja10.TogglePvP.Utils.Toggle;
 
 import org.bukkit.entity.LivingEntity;
@@ -16,6 +17,18 @@ public class SplashPotion implements Listener
 	/*
 	 * This nullifies nasty potions
 	 */
+	
+	private PotionEffectType[] list = new PotionEffectType[]
+			{
+			PotionEffectType.POISON,
+			PotionEffectType.BLINDNESS,
+			PotionEffectType.CONFUSION,
+			PotionEffectType.HARM,
+			PotionEffectType.HUNGER,
+			PotionEffectType.WEAKNESS,
+			PotionEffectType.SLOW
+			};
+	
 	@EventHandler
 	public void onSplash(PotionSplashEvent e)
 	{
@@ -36,7 +49,7 @@ public class SplashPotion implements Listener
 						//loop through all effects and see if Poison is one of them
 						for(PotionEffect effect : e.getPotion().getEffects())
 						{
-							if(effect.getType().equals(PotionEffectType.POISON))
+							if(Arrays.asList(list).contains(effect.getType()))
 							{							
 								//now set the intensity for the hit player to be negative
 								e.setIntensity(hit, -1);									

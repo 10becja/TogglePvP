@@ -2,10 +2,81 @@ package me.becja10.TogglePvP.Utils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class CommandHelper {
+	
+	public static boolean lockpvp(CommandSender sender, String[] args)
+	{
+		boolean isPlayer = sender instanceof Player;
+		
+		if(isPlayer && !sender.hasPermission("togglepvp.lock"))
+		{
+			sender.sendMessage(MessageType.NO_PERM.getMsg());
+			return true;
+		}
+		
+		if(args.length != 2)
+			return false;
+		
+		String value = args[1];
+		
+		if(!(value.equalsIgnoreCase("true") || value.equalsIgnoreCase("false")))
+			return false;
+		
+		@SuppressWarnings("deprecation")
+		OfflinePlayer target = Bukkit.getOfflinePlayer(args[0]);
+		
+		String id = target.getUniqueId().toString();
+				
+		if(!FileManager.getPlayers().contains(id))
+			sender.sendMessage(MessageType.PLAYER_NOT_FOUND.getMsg());
+		
+		if(target.isOnline())
+			Toggle.togglePVP((Player)target);
+		
+		FileManager.getPlayers().set(id + ".pvp", Boolean.parseBoolean(value));
+		FileManager.getPlayers().set(id + ".lock", true);
+		FileManager.savePlayers();
+		
+		
+		ChatColor status = (Boolean.parseBoolean(value)) ? ChatColor.RED : ChatColor.GREEN;
+		
+		sender.sendMessage(MessageType.PREFIX.getMsg() + ChatColor.GRAY + "Locked " + ChatColor.GOLD + target.getName() + "'s " + ChatColor.GRAY + "pvp status to " + status + value);
+		
+		return true;
+	}
+	
+	public static boolean unlockpvp(CommandSender sender, String[] args)
+	{
+		boolean isPlayer = sender instanceof Player;
+		
+		if(isPlayer && !sender.hasPermission("togglepvp.lock"))
+		{
+			sender.sendMessage(MessageType.NO_PERM.getMsg());
+			return true;
+		}
+		
+		if(args.length != 1)
+			return false;
+		
+		@SuppressWarnings("deprecation")
+		OfflinePlayer target = Bukkit.getOfflinePlayer(args[0]);
+		
+		String id = target.getUniqueId().toString();
+		
+		if(!FileManager.getPlayers().contains(id))
+			sender.sendMessage(MessageType.PLAYER_NOT_FOUND.getMsg());
+		
+		FileManager.getPlayers().set(id + ".lock", false);
+		FileManager.savePlayers();
+		
+		sender.sendMessage(MessageType.PREFIX.getMsg() + ChatColor.GRAY + "Unlocked " + ChatColor.GOLD + target.getName() + "'s " + ChatColor.GRAY + "pvp status");
+		
+		return true;
+	}
 	
 	public static boolean togglepvptime(CommandSender sender, String[] args)
 	{
@@ -24,8 +95,10 @@ public class CommandHelper {
 																  + ChatColor.AQUA + getTime(p)
 																  + ChatColor.GRAY + getEnding(p) + " left.");
 				}
-				else //they aren't a player
-					sender.sendMessage(MessageType.PLAYER_ONLY.getMsg());				
+				else if(!isPlayer) //they aren't a player
+					sender.sendMessage(MessageType.PLAYER_ONLY.getMsg());
+				else
+					sender.sendMessage(MessageType.NO_PERM.getMsg());				
 				break;
 					
 			case 1: //trying to do it on someone else
@@ -82,8 +155,10 @@ public class CommandHelper {
 					else
 						p.sendMessage(MessageType.PREFIX.getMsg() + ChatColor.GRAY + "You are in " + ChatColor.GREEN + "pve");
 				}
-				else //they aren't a player
-					sender.sendMessage(MessageType.PLAYER_ONLY.getMsg());				
+				else if(!isPlayer) //they aren't a player
+					sender.sendMessage(MessageType.PLAYER_ONLY.getMsg());
+				else
+					sender.sendMessage(MessageType.NO_PERM.getMsg());				
 				break;
 					
 			case 1: //trying to do it on someone else
@@ -144,6 +219,12 @@ public class CommandHelper {
 				{
 					Player p = (Player)sender;						
 					//check to see if they are in the list of people who used /togglepvp recently
+					if(FileManager.getPlayers().getBoolean(p.getUniqueId().toString()+".lock"))
+					{
+						p.sendMessage(MessageType.TOGGLE_LOCKED.getMsg());
+						return true;
+					}
+					
 					if (!Toggle.getList().containsKey(p.getName()))
 						Toggle.togglePVP(p);
 					else
@@ -162,8 +243,10 @@ public class CommandHelper {
 								ChatColor.AQUA + time + ChatColor.GRAY + getEnding(p) + "!");
 					}
 				}
-				else //they aren't a player
-					sender.sendMessage(MessageType.PLAYER_ONLY.getMsg());				
+				else if(!isPlayer) //they aren't a player
+					sender.sendMessage(MessageType.PLAYER_ONLY.getMsg());
+				else
+					sender.sendMessage(MessageType.NO_PERM.getMsg());
 				break;
 					
 			case 1: //trying to do it on someone else

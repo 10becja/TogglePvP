@@ -18,6 +18,12 @@ public class FileManager
 	 * Get information about the players stored in players.yml
 	 */
 	public static FileConfiguration getPlayers() {
+		/*
+		 * <id>:
+		 *   name: blah
+		 *   pvp: true|false
+		 *   lock: true|false
+		 */
 		if (config == null)
 			reloadPlayers();
 		return config;

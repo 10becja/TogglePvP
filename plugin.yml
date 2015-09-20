@@ -1,5 +1,5 @@
 name: TogglePvP
-version: 3.0
+version: 4.0
 main: me.becja10.TogglePvP.TogglePvP
 description: Allows players to toggle between PvP and PvE
 commands:
@@ -23,3 +23,9 @@ commands:
     description: Reloads the player data and configs
     usage: /togglepvpreload 
     aliases: [tpvpreload]
+  lockpvp:
+    description: Locks a player's pvp status
+    usage: /lockpvp <player> <true|false>
+  unlockpvp:
+    description: Unlocks a player's pvp status
+    usage: /unlockpvp <player>
