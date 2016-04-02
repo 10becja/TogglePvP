@@ -5,7 +5,6 @@ import me.becja10.TogglePvP.TogglePvP;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
-import org.bukkit.scoreboard.NameTagVisibility;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
@@ -44,7 +43,7 @@ public class ColorName implements Listener
 			scoreboard.getTeam(teamName).setCanSeeFriendlyInvisibles(false);
 			scoreboard.getTeam(teamName).setAllowFriendlyFire(true);
 			if(teamName == invisible)
-				scoreboard.getTeam(teamName).setNameTagVisibility(NameTagVisibility.NEVER);
+				scoreboard.getTeam(teamName).setOption(Team.Option.NAME_TAG_VISIBILITY, Team.OptionStatus.NEVER);
 		}
 	}
 	
