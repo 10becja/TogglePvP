@@ -15,11 +15,45 @@ import org.bukkit.entity.ThrownPotion;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityCombustByEntityEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 
 public class EntityDamage implements Listener
 {
+	@EventHandler(ignoreCancelled = true, priority = EventPriority.LOWEST)
+	public void onEntityCombust(EntityCombustByEntityEvent event)
+	{
+		Arrow arrow = null;
+		Player shooter = null;
+		
+		if(event.getCombuster() instanceof Arrow)
+			arrow = (Arrow) event.getCombuster();
+		
+		if(arrow != null && arrow.getShooter() instanceof Player)
+			shooter = (Player) arrow.getShooter();
+		
+		//we only care if this event is caused by a player shooting an arrow
+		if(shooter == null)
+			return;
+				
+		Entity onFire = event.getEntity();				
+		
+		//they shot a player
+		if(onFire instanceof Player)
+		{
+			//admins can damage anyone, at any time. MUHAHAHA
+			if(shooter.hasPermission("togglepvp.admin"))
+				return;
+			
+			//if either party has PvE enabled cancel the event
+			if((!Toggle.isPvPEnabled(shooter)) || (!Toggle.isPvPEnabled((Player)onFire)))
+			{
+				event.setCancelled(true);
+			}	
+		}
+	}
+	
 	@EventHandler(ignoreCancelled = true, priority = EventPriority.LOWEST)
 	public void onDmg(EntityDamageEvent event)
 	{
