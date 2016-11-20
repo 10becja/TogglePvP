@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import me.becja10.TogglePvP.TogglePvP;
+import me.becja10.TogglePvP.Events.PvpToggleEvent;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -24,13 +25,17 @@ public class Toggle
 		
 		//if they have pvp enabled, change to pve, and update UUID.pvp in players.yml
 		if (isPvPEnabled(player))
-			c.set(player.getUniqueId().toString()+".pvp", Boolean.valueOf(false));
+			c.set(player.getUniqueId().toString()+".pvp", false);
 		else 
-			c.set(player.getUniqueId().toString()+".pvp", Boolean.valueOf(true));
+			c.set(player.getUniqueId().toString()+".pvp", true);
 		
 		//store the map the current time to the players name, so they know how much longer to wait
 		toggled.put(player.getName(), System.currentTimeMillis());
 		FileManager.savePlayers();
+		
+		//fire event so other plugins can pick it up
+		PvpToggleEvent event = new PvpToggleEvent(player, isPvPEnabled(player));
+		Bukkit.getServer().getPluginManager().callEvent(event);
 		
 		//add the player to the right team, this way their name changes
 		ColorName.changeColor(player);
