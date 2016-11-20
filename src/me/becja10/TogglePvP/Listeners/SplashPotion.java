@@ -1,4 +1,4 @@
-package me.becja10.TogglePvP.Events;
+package me.becja10.TogglePvP.Listeners;
 
 import java.util.Arrays;
 import me.becja10.TogglePvP.Utils.Toggle;

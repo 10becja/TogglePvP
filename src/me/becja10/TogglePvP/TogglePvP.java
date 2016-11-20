@@ -4,10 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Logger;
 
-import me.becja10.TogglePvP.Events.EntityDamage;
-import me.becja10.TogglePvP.Events.PlayerJoin;
-import me.becja10.TogglePvP.Events.PlayerMove;
-import me.becja10.TogglePvP.Events.SplashPotion;
+import me.becja10.TogglePvP.Listeners.EntityDamage;
+import me.becja10.TogglePvP.Listeners.PlayerJoin;
+import me.becja10.TogglePvP.Listeners.PlayerMove;
+import me.becja10.TogglePvP.Listeners.SplashPotion;
 import me.becja10.TogglePvP.Utils.ColorName;
 import me.becja10.TogglePvP.Utils.CommandHelper;
 import me.becja10.TogglePvP.Utils.FileManager;
